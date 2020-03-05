@@ -9,7 +9,7 @@ public class Coin {
     throwCoin();
   }
 
-  public static Coin getInstance(){
+  public static Coin getInstance(){ //Permet de récuperer le COIN UNIQUE
     if(uniqueCoin == null){
       uniqueCoin = new Coin();
     }

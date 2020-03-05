@@ -24,6 +24,8 @@ public class Game {
      */
     public void addPlayer(Player player) {
       // TODO: Votre code ici
+        List<CoinState> lst = new ArrayList<>();
+        history.put(player,lst);
     }
 
     /**
@@ -31,6 +33,7 @@ public class Game {
      */
     public void play() {
       // TODO: Votre code ici
+
     }
 
     /**
