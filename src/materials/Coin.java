@@ -5,9 +5,7 @@ public class Coin {
   private CoinState coinState;
   private static Coin uniqueCoin = null;
 
-  private Coin(){
-    throwCoin();
-  }
+  private Coin(){throwCoin();}
 
   public static Coin getInstance(){ //Permet de récuperer le COIN UNIQUE
     if(uniqueCoin == null){

@@ -33,7 +33,15 @@ public class Game {
      */
     public void play() {
       // TODO: Votre code ici
-
+        rules = Rules.getInstance(); //Instancie en singleton le processus de jeux
+        for(Player p: history.keySet()){ //Itération des joueurs
+            coin = Coin.getInstance(); //Instancie un Coin pour chaque utilisateur
+            //Boucle - Tant que checkWin est faux
+            while (!rules.checkWin(history.get(p))){
+                p.play(coin); //On fait jouer le coin
+                history.get(p).add(coin.getState()); //On ajout son état
+            }
+        }
     }
 
     /**
@@ -43,7 +51,26 @@ public class Game {
      */
     public Statistics getStatistics() {
       // TODO: Votre code ici
-      return null;
+        Map<Player, List<CoinState>> historyPrecedent = this.history;
+        float nbToWin = 0;
+        int nbMin = 0;
+        int nbMax = 0;
+        int nbTotalLancer = 0;
+
+        for(Player p : historyPrecedent.keySet()){
+            nbToWin += historyPrecedent.get(p).size();
+            nbTotalLancer += historyPrecedent.get(p).size();
+        }
+
+        nbToWin = nbToWin / historyPrecedent.size();
+        nbMin = nbMinWinners(historyPrecedent);
+        nbMax = nbMinWinners(historyPrecedent);
+
+        return new Statistics(nbToWin, nbMin, nbMax, nbTotalLancer);
+    }
+
+    public int nbMinWinners(Map<Player, List<CoinState>> historyPrecedent){
+
     }
 
     /**
@@ -53,7 +80,7 @@ public class Game {
      */
     public Map<Player, List<CoinState>> getHistory() {
       // TODO: Votre code ici
-      return null;
+      return this.history;
     }
 
 
@@ -65,7 +92,7 @@ public class Game {
      */
     public List<CoinState> getSpecificHistory(Player player) {
       // TODO: Votre code ici
-      return null;
+      return history.get(player);
     }
 
 }
