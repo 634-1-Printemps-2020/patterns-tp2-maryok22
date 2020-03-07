@@ -64,13 +64,31 @@ public class Game {
 
         nbToWin = nbToWin / historyPrecedent.size();
         nbMin = nbMinWinners(historyPrecedent);
-        nbMax = nbMinWinners(historyPrecedent);
+        nbMax = nbaxnWinners(historyPrecedent);
 
         return new Statistics(nbToWin, nbMin, nbMax, nbTotalLancer);
     }
 
-    public int nbMinWinners(Map<Player, List<CoinState>> historyPrecedent){
+    private int nbMinWinners(Map<Player, List<CoinState>> historyPrec){
+        Player p1 = (Player)historyPrec.keySet().toArray()[0];
+        int min = historyPrec.get(p1).size();
+        for(Player p: historyPrec.keySet()){
+            if(historyPrec.get(p).size() < min){
+                min = historyPrec.get(p).size();
+            }
+        }
+        return min;
+    }
 
+    private int nbaxnWinners(Map<Player, List<CoinState>> historyPrec){
+        Player p1 = (Player)historyPrec.keySet().toArray()[0];
+        int max = historyPrec.get(p1).size();
+        for(Player p: historyPrec.keySet()){
+            if(historyPrec.get(p).size() > max){
+                max = historyPrec.get(p).size();
+            }
+        }
+        return max;
     }
 
     /**
